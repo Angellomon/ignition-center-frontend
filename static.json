@@ -1,0 +1,9 @@
+{
+  "root": "dist/",
+  "routes": {
+    "/assets/*": "/assets/",
+    "/fonts/*": "/fonts/",
+    "/**": "index.html"
+  },
+  "clean_urls": true
+}
