@@ -1,29 +1,42 @@
 <script>
   import { typewriter } from '../../transitions';
-  import Emphasis from '../Emphasis.svelte';
+  import { push } from 'svelte-spa-router';
+
   export const onFinish = () => {
-    console.log('fin hola');
+    setTimeout(() => {
+      push('/formulario');
+    }, 1000);
   };
 
+  let holaVisible = true;
   let bienvendoVisible = false;
   let aVisible = false;
   let ignitionCenterVisible = false;
 </script>
 
-<p
-  in:typewriter
-  on:introend={() => {
-    bienvendoVisible = true;
-  }}
->
-  hola
-</p>
+{#if holaVisible}
+  <p
+    in:typewriter
+    on:introend={() => {
+      setTimeout(() => {
+        holaVisible = false;
+        bienvendoVisible = true;
+      }, 500);
+    }}
+  >
+    hola
+  </p>
+{/if}
 
 {#if bienvendoVisible}
   <p
     in:typewriter
     on:introend={() => {
-      aVisible = true;
+      setTimeout(() => {
+        aVisible = true;
+        bienvendoVisible = false;
+        ignitionCenterVisible = false;
+      }, 500);
     }}
   >
     bienvenid@
@@ -34,7 +47,10 @@
   <p
     in:typewriter
     on:introend={() => {
-      ignitionCenterVisible = true;
+      setTimeout(() => {
+        aVisible = false;
+        ignitionCenterVisible = true;
+      }, 500);
     }}
   >
     a
@@ -42,7 +58,7 @@
 {/if}
 
 {#if ignitionCenterVisible}
-  <p in:typewriter>ignition center</p>
+  <p in:typewriter on:introend={onFinish}>ignition center</p>
 {/if}
 
 <style>
