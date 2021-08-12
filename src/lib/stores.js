@@ -25,3 +25,5 @@ export const formValues = writable({
   oportunidadVerdadera: '',
   requiereFondeo: false
 });
+
+export const seccion = writable('');
