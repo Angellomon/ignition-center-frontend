@@ -1,12 +1,17 @@
 <script>
+  import { spring } from 'svelte/motion';
+  import { onMount } from 'svelte';
+
   import PresentarIdea from '../components/info/PresentarIdea.svelte';
   import Requerimientos from '../components/info/Requerimientos.svelte';
   import QueEsIG from '../components/info/QueEsIG.svelte';
   import ConoceElProceso from '../components/info/ConoceElProceso.svelte';
-  import { spring } from 'svelte/motion';
   import Cursor from '../components/Cursor.svelte';
-  import { seccion } from '../stores';
   import RetosTrimestrales from '../components/info/RetosTrimestrales.svelte';
+  import MaterialApoyo from '../components/info/MaterialApoyo.svelte';
+
+  import { seccion, cursorPosition, shouldAnimate } from '../stores';
+  import VerIniciativas from '../components/info/VerIniciativas.svelte';
 
   let shouldMove = true;
 
@@ -24,18 +29,22 @@
   const handleLeave = () => {
     shouldMove = true;
   };
+
+  onMount(() => {
+    seccion.set('presentar_idea');
+  });
 </script>
 
 <div class="container">
-  <div class="grid" on:mousemove={(e) => shouldMove && coords.set({ x: e.pageX, y: e.pageY })}>
+  <div class="grid">
     <div class="span-col-6">Ignition Center</div>
     <div on:mouseenter={() => seccion.set('presentar_idea')} class="span-col-3 span-row-2 white">
       <PresentarIdea bind:coords={$coords} on:enter={handleEnter} on:leave={handleLeave} />
     </div>
-    <div on:mouseenter={() => seccion.set('requerimientos')} class="span-col-3 span-row-2 darkblue">
+    <div class="span-col-3 span-row-2 darkblue">
       <Requerimientos bind:coords={$coords} on:enter={handleEnter} on:leave={handleLeave} />
     </div>
-    <div class="span-col-2 span-row-2 darkblue">
+    <div on:mouseenter={() => seccion.set('que_es')} class="span-col-2 span-row-2 darkblue">
       <QueEsIG bind:coords={$coords} on:enter={handleEnter} on:leave={handleLeave} />
     </div>
     <div class="green">
@@ -44,8 +53,12 @@
     <div class="span-col-2 span-row-2 green">
       <RetosTrimestrales bind:coords={$coords} on:enter={handleEnter} on:leave={handleLeave} />
     </div>
-    <div>Item 7</div>
-    <div>Item 8</div>
+    <div>
+      <MaterialApoyo bind:coords={$coords} on:enter={handleEnter} on:leave={handleLeave} />
+    </div>
+    <div class="darkblue">
+      <VerIniciativas bind:coords={$coords} on:enter={handleEnter} on:leave={handleLeave} />
+    </div>
     <div>Item 9</div>
     <div class="span-col-2 span-row-2">Item 10</div>
     <div class="span-col-2">Item 11</div>
@@ -54,7 +67,7 @@
     <div>Item 14</div>
   </div>
 
-  <Cursor x={$coords.x} y={$coords.y} />
+  <Cursor x={$cursorPosition.x} y={$cursorPosition.y} />
 </div>
 
 <style>
