@@ -1,7 +1,9 @@
 <script>
   import { fade } from 'svelte/transition';
+  import { push } from 'svelte-spa-router';
   import Switch from '../components/Switch.svelte';
   import Titulo from '../components/Titulo.svelte';
+  import { onDestroy } from 'svelte';
 
   let on = false;
   let redirect = false;
@@ -16,11 +18,14 @@
     clearTimeout(timeout);
   }
   $: if (redirect) {
+    clearTimeout(timeout);
     timeout2 = setTimeout(() => {
-      window.location.href =
-        'https://collaboration.merck.com/sites/SoFMexico/SitePages/ignitionCenter.aspx';
+      // window.location.href =
+      //   'https://collaboration.merck.com/sites/SoFMexico/SitePages/ignitionCenter.aspx';
+      push('/info');
     }, 400);
   }
+  onDestroy(() => clearTimeout(timeout2));
 </script>
 
 <section class:on>
