@@ -18,9 +18,11 @@
 
 <style>
   .circle {
-    background-color: #ff3e00;
+    background-color: #bed74b;
     border-radius: 50%;
     display: inline-block;
     position: absolute;
+    -webkit-box-shadow: 0px 0px 50px 15px #bed74b;
+    box-shadow: 0px 0px 50px 15px #bed74b;
   }
 </style>
