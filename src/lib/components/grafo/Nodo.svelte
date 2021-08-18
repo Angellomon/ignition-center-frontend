@@ -1,5 +1,8 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { offset } from '../../utils';
+
+  export let darkblue = false;
 
   const dispatch = createEventDispatcher();
   let selected;
@@ -8,13 +11,6 @@
     x: 0,
     y: 0
   };
-
-  function offset(el) {
-    var rect = el.getBoundingClientRect(),
-      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
-  }
 
   const enter = () => dispatch('enter');
   const leave = () => dispatch('leave');
@@ -35,7 +31,7 @@
     leave();
   }}
 >
-  <span bind:this={selected} class="nodo" />
+  <span bind:this={selected} class={`nodo ${darkblue ? 'darkblue' : 'white'}`} />
 </div>
 
 <style>
@@ -51,9 +47,16 @@
   span.nodo {
     height: 15px;
     width: 15px;
-    background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
     position: relative;
+  }
+
+  .white {
+    background-color: white;
+  }
+
+  .darkblue {
+    background-color: #13213d;
   }
 </style>

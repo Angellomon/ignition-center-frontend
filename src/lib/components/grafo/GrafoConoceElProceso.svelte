@@ -39,7 +39,7 @@
   }
   .arista {
     width: 2px;
-    background-color: rebeccapurple;
+    background-color: white;
     height: 2px;
     width: 70px;
     margin-top: -24px;
@@ -48,7 +48,7 @@
   }
   .arista-2 {
     width: 2px;
-    background-color: rebeccapurple;
+    background-color: white;
     height: 2px;
     width: 65px;
     margin-top: -40px;
