@@ -3,6 +3,7 @@
   import ColWrap from './ColWrap.svelte';
 
   import { seccion } from '../../stores';
+  import WrapperAnimacion from '../grafo/WrapperAnimacion.svelte';
 
   export let coords = {
     x: 0,
@@ -12,7 +13,9 @@
 
 <ColWrap>
   <h3>quiero presentar mi idea</h3>
-  <GrafoPresentar bind:coords on:enter on:leave animation={$seccion === 'presentar_idea'} />
+  <WrapperAnimacion animation={$seccion === 'presentar_idea'} grafoClass=".grafo-presentar">
+    <GrafoPresentar bind:coords on:enter on:leave />
+  </WrapperAnimacion>
 </ColWrap>
 
 <style>
