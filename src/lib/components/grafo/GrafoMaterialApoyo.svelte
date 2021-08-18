@@ -7,7 +7,7 @@
   };
 </script>
 
-<div class="grafo">
+<div class="grafo-material-apoyo">
   <div class="nodo-1">
     <Nodo bind:pos={coords} on:enter on:leave darkblue />
   </div>
@@ -83,7 +83,7 @@
     z-index: -90;
   }
 
-  .grafo {
+  .grafo-material-apoyo {
     margin-top: 30px;
     position: absolute;
   }
