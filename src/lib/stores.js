@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { spring } from 'svelte/motion';
 
 export const stepForm = writable(0);
 
@@ -27,3 +28,18 @@ export const formValues = writable({
 });
 
 export const seccion = writable('');
+
+export const shouldAnimate = writable({
+  presentarIdea: false
+});
+
+export const cursorPosition = spring(
+  {
+    x: -20,
+    y: -20
+  },
+  {
+    stiffness: 0.1,
+    damping: 0.25
+  }
+);
