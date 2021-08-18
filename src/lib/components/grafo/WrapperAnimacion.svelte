@@ -1,13 +1,16 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
 
-  import { cursorPosition } from '../../stores';
-  import { offset } from '../../utils';
+  import { cursorPosition, shouldAnimate } from '../../stores';
+  import { offset, DURACION_ANIMACION } from '../../utils';
+
+  export let animation = false;
+  export let topOffset = 20;
+  export let leftOffset = 23;
 
   let posicionInicial, interval, grafo;
 
   export let grafoClass = 'grafo_presentar';
-  export let shouldAnimate = false;
   export let offssetsPosiciones = [
     {
       x: 0,
@@ -28,14 +31,12 @@
   ];
 
   const INICIO = 0,
-    FIN = offssetsPosiciones.length - 1,
-    TOP_OFFSET = 20,
-    LEFT_OFFSET = 23;
+    FIN = offssetsPosiciones.length - 1;
 
   let etapa = INICIO;
 
   const actualizarPosicion = () => {
-    if (!shouldAnimate) {
+    if (!$shouldAnimate || !posicionInicial) {
       // etapa = INICIO;
       return;
     }
@@ -57,38 +58,22 @@
 
     const pos = offset(grafo);
 
-    pos.left += LEFT_OFFSET;
-    pos.top += TOP_OFFSET;
+    pos.left += leftOffset;
+    pos.top += topOffset;
 
-    cursorPosition.set({
-      x: pos.left,
-      y: pos.top
-    });
     posicionInicial = pos;
-
-    // interval = setInterval(() => {
-    //   siguienteEtapa();
-    // }, 1500);
+    console.log(pos);
   });
   onDestroy(() => clearInterval(interval));
 
-  $: if (!shouldAnimate) {
+  $: if (!animation || !$shouldAnimate) {
     clearInterval(interval);
   } else {
     actualizarPosicion();
     interval = setInterval(() => {
       actualizarPosicion();
-    }, 1500);
+    }, DURACION_ANIMACION);
   }
 </script>
 
-<div>
-  <slot />
-</div>
-
-<style>
-  div {
-    margin: 0;
-    padding: 0;
-  }
-</style>
+<slot />
