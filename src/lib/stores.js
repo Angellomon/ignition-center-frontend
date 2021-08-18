@@ -29,9 +29,7 @@ export const formValues = writable({
 
 export const seccion = writable('');
 
-export const shouldAnimate = writable({
-  presentarIdea: false
-});
+export const shouldAnimate = writable(true);
 
 export const cursorPosition = spring(
   {
@@ -43,3 +41,5 @@ export const cursorPosition = spring(
     damping: 0.25
   }
 );
+
+export const cursorSize = spring(20);
