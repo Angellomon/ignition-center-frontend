@@ -8,8 +8,11 @@
 </main>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  @font-face {
+    font-family: Invention;
+    src: url('/fonts/Invention_W_Rg.woff2');
+  }
   :root {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Invention', sans-serif;
   }
 </style>
