@@ -20,9 +20,9 @@
   $: if (redirect) {
     clearTimeout(timeout);
     timeout2 = setTimeout(() => {
-      // window.location.href =
-      //   'https://collaboration.merck.com/sites/SoFMexico/SitePages/ignitionCenter.aspx';
-      push('/info');
+      window.location.href =
+        'https://collaboration.merck.com/sites/SoFMexico/SitePages/ignitionCenter.aspx';
+      // push('/info');
     }, 400);
   }
   onDestroy(() => clearTimeout(timeout2));
