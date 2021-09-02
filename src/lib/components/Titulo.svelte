@@ -7,7 +7,7 @@
 <style>
   h2 {
     color: #75c7ae;
-    font-size: 3em;
+    font-size: 2.9em;
     text-align: right;
     line-height: 2.7rem;
   }
