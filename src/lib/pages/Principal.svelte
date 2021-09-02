@@ -28,46 +28,62 @@
   onDestroy(() => clearTimeout(timeout2));
 </script>
 
-<section class:on>
+<section class:on transition:fade>
   {#if !redirect}
-    <div class="container" transition:fade>
+    <span class="titulo">
       <Titulo />
+    </span>
+    <span class="switch">
       <Switch bind:checked={on} />
-      {#if on}
-        <div class="mensaje">
-          <p transition:fade>Powered by Subsidiary</p>
-          <p transition:fade>of the Future</p>
-        </div>
-      {/if}
-    </div>
+    </span>
+    {#if on}
+      <div class="mensaje">
+        <p transition:fade>Powered by Subsidiary</p>
+        <p transition:fade>of the Future</p>
+      </div>
+    {/if}
   {/if}
 </section>
 
 <style>
+  span.titulo,
+  span.switch,
+  div.mensaje {
+    position: absolute;
+  }
+
+  span.titulo {
+    top: 5%;
+  }
+
+  span.switch {
+    bottom: 50%;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #13213d;
+    min-width: 100vw;
+    min-height: 100vh;
+    justify-content: space-between;
+    position: relative;
+  }
+
   p {
     color: #75c7ae;
     text-align: center;
     margin: 0;
     font-weight: bold;
   }
+
   div.mensaje {
     margin-top: 5em;
+    bottom: 10%;
   }
-  div.container {
-    margin: 5em;
-    padding: 5em;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-  }
-  section {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: #13213d;
-    min-width: 100vw;
-    min-height: 100vh;
-  }
+
   .on {
     background-color: white;
     -webkit-transition: background-color 500ms linear;
