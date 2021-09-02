@@ -9,5 +9,6 @@
     color: #75c7ae;
     font-size: 3em;
     text-align: right;
+    line-height: 2.7rem;
   }
 </style>
