@@ -80,7 +80,6 @@
   }
 
   div.mensaje {
-    margin-top: 5em;
     bottom: 10%;
   }
 
