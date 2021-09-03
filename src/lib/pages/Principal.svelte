@@ -31,16 +31,18 @@
 <section class:on transition:fade>
   {#if !redirect}
     <span class="titulo">
-      <Titulo />
+      <Titulo {on} />
     </span>
     <span class="switch">
       <Switch bind:checked={on} />
     </span>
+
     {#if on}
-      <div class="mensaje">
-        <p transition:fade>Powered by Subsidiary</p>
-        <p transition:fade>of the Future</p>
+      <div class="mensaje" transition:fade={{ duration: 400, delay: 200 }}>
+        <p>powered by subsidiary of the future</p>
       </div>
+    {:else}
+      <span class="helper" transition:fade={{ duration: 250, delay: 300 }}> dale clic </span>
     {/if}
   {/if}
 </section>
@@ -48,6 +50,7 @@
 <style>
   span.titulo,
   span.switch,
+  span.helper,
   div.mensaje {
     position: absolute;
   }
@@ -60,16 +63,30 @@
     bottom: 50%;
   }
 
+  span.helper {
+    color: white;
+    text-align: center;
+    bottom: 25%;
+    align-self: center;
+  }
+
+  div.mensaje {
+    bottom: 25%;
+  }
+
   section {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    background-color: #13213d;
+    background-color: #3a837c;
     min-width: 100vw;
     min-height: 100vh;
     justify-content: space-between;
     position: relative;
+    -webkit-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
   }
 
   p {
@@ -77,10 +94,6 @@
     text-align: center;
     margin: 0;
     font-weight: bold;
-  }
-
-  div.mensaje {
-    bottom: 10%;
   }
 
   .on {
